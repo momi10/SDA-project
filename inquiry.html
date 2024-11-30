@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Get in Touch Form</title>
+    <link rel="stylesheet" href="style2.css">
+</head>
+<body>
+    <div class="container">
+        
+        <div class="image-section">
+            <img src="Screenshot 2024-11-18 133823.png" alt="Feedback Image">
+
+            
+            <div class="contact-info">
+                <p><img src="email-photoaidcom-cropped.png" alt="Email Icon"> mohaiman10ahmad@gmail.com</p>
+                <p><img src="phone-photoaidcom-cropped.png" alt="Phone Icon"> 92+301694837</p>
+                <p><img src="location-photoaidcom-cropped.png" alt="Location Icon"> 123 Street 456 House</p>
+            </div>
+
+            
+            <div class="social-icons">
+                <a href="https://www.facebook.com" target="_blank">
+                    <img src="facebook-photoaidcom-cropped.png" alt="Facebook">
+                </a>
+                <a href="https://www.instagram.com" target="_blank">
+                    <img src="insta.png" alt="Instagram">
+                </a>
+                <a href="https://x.com/?lang=en&mx=2" target="_blank">
+                    <img src="twitter-photoaidcom-cropped.png" alt="X">
+                </a>
+            </div>
+        </div>
+
+        
+        <div class="contact-form">
+            
+            <h2>GET IN TOUCH</h2>
+            <form id="inquiry-form">
+                <label for="name">YOUR NAME</label>
+                <input type="text" id="name" name="name" placeholder="Enter your name" required>
+                
+                <label for="email">YOUR EMAIL</label>
+                <input type="email" id="email" name="email" placeholder="Enter your email" required>
+                
+                <label for="message">YOUR MESSAGE</label>
+                <textarea id="message" name="message" placeholder="Enter your message" required></textarea>
+                
+                <button type="submit">SEND MESSAGE</button>
+                <p class="or-text">OR</p>
+
+      
+            </form>
+            <a href="homepage.html">
+                <button id="home-button">HOME</button>
+      </a>
+        </div>
+    </div>
+    <script>
+        document.getElementById("inquiry-form").addEventListener("submit", async function (event) {
+            event.preventDefault(); 
+    
+            const name = document.getElementById("name").value;
+            const email = document.getElementById("email").value;
+            const message = document.getElementById("message").value;
+    
+            try {
+                const response = await fetch("http://localhost:4000/submit-inquiry", {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify({ name, email, message }),
+                });
+    
+                const result = await response.json();
+                if (response.ok) {
+                    alert(result.message); 
+                    document.getElementById("inquiry-form").reset(); 
+                } else {
+                    alert(result.message || "Failed to send the inquiry.");
+                }
+            } catch (error) {
+                console.error("Error submitting inquiry:", error);
+                alert("Error submitting the inquiry.");
+            }
+        });
+    </script>
+    
+    
+</body>
+</html>

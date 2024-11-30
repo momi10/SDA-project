@@ -1,0 +1,141 @@
+
+body {
+    margin: 0;
+    font-family: 'Arial', sans-serif;
+    background: radial-gradient(circle, #ffffff, #8b65bd, #301934);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    color: white;
+  }
+  
+  .container {
+    display: flex;
+    width: 70%;
+    height: 70%;
+    border-radius: 15px;
+    box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.3);
+    overflow: hidden;
+  }
+  
+  
+  .image-section {
+    flex: 1.5;
+    background: rgba(255, 255, 255, 0.1);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .image-section img {
+    width: 75%;
+    border-radius: 20px;
+  }
+  
+  
+  .form-section {
+    flex: 1;
+    background: linear-gradient(to bottom, #472e64, #2e1c3c);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+  }
+  
+  .form-section h2 {
+    margin-bottom: 20px;
+    font-size: 24px;
+    letter-spacing: 1px;
+  }
+  
+  .rating .star {
+    font-size: 28px;
+    cursor: pointer;
+    color: #f1f1ef; 
+    transition: color 0.2s;
+  }
+  
+  .rating .star.active {
+    color: rgb(224, 244, 12); 
+  }
+  
+  .rating .star.hover {
+    color: #ffa500; 
+  }
+  
+  
+  /* Buttons */
+  button {
+    margin-top: 10px;
+    padding: 5px 15px;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    font-weight: bold;
+    color: white;
+    cursor: pointer;
+    transition: all 0.2s ease-in-out;
+  }
+  
+  #reset-button {
+    background: #ff4081;
+  }
+  
+  #reset-button:hover {
+    background: #e03570;
+  }
+  
+  #submit-button {
+    background: linear-gradient(to right, #8e44ad, #6c3483);
+  }
+  
+  #submit-button:hover {
+    background: linear-gradient(to right, #b160d1, #82489b);
+  }
+  
+  #home-button {
+    background: linear-gradient(to right, #a61abc, #d267ef);
+  }
+  
+  #home-button:hover {
+    background: linear-gradient(to right, #c920c6, #fa84ee);
+  }
+  
+  
+  textarea {
+    width: 80%;
+    height: 80px;
+    margin: 15px 0;
+    padding: 15px;
+    border-radius: 10px;
+    border: none;
+    resize: none;
+    font-size: 16px;
+  }
+  
+  textarea:focus {
+    outline: none;
+    box-shadow: 0px 0px 5px rgba(255, 255, 255, 0.5);
+  }
+  
+  .comment-label {
+    align-self: flex-start;
+    margin-left: 10%;
+    margin-bottom: 5px;
+  }
+  
+
+  .or-text {
+    margin: 15px 0;
+    font-size: 16px;
+    font-weight: bold;
+    color: rgba(255, 255, 255, 0.7);
+  }
+  .star.active, .star.selected {
+    color: gold; 
+  }
+  .star.hover {
+    color: lightgray; 
+  }
+  
