@@ -1,59 +1,85 @@
-const express = require("express");
-const { MongoClient, ServerApiVersion } = require("mongodb");
-const bodyParser = require("body-parser");
-const cors = require("cors");
-const path = require("path");
+const express = require('express');
+const path = require('path');
+const mysql = require('mysql2');
+const cors = require('cors');
+require('dotenv').config();
 
 const app = express();
-const port = 3000;
 
+// Middleware
 app.use(cors());
-app.use(bodyParser.json());
+app.use(express.json());
 
-app.use(express.static("D:/SDA project"));
+// Serve static files from the "public" directory
+app.use(express.static(path.join(__dirname, 'public')));
 
-
-const uri = "mongodb+srv://mohaiman:atlas12345@cluster0.5qidl.mongodb.net/?retryWrites=true&w=majority";
-const client = new MongoClient(uri, {
-  serverApi: { version: ServerApiVersion.v1, strict: true, deprecationErrors: true },
+// MySQL connection
+const db = mysql.createConnection({
+  host: 'localhost',
+  user: 'root',
+  password: 'lahore789',
+  database: 'newdb', // Correct database name
 });
 
-let db;
-client.connect()
-  .then(() => {
-    db = client.db("feedback"); 
-    console.log("Connected to MongoDB!");
-  })
-  .catch(err => console.error("Error connecting to MongoDB:", err));
+db.connect((err) => {
+  if (err) {
+    console.error('Database connection failed:', err.stack);
+    return;
+  }
+  console.log('Connected to the database.');
+});
 
+// Routes
 
-app.get("/", (req, res) => {
-  res.sendFile(path.join("D:/SDA project", "feedback.html"));
+// Home route for 2.html
+app.get('/', (req, res) => {
+  res.sendFile(path.join(__dirname, 'public/2.html')); // Serves 2.html as the main HTML file
+});
+
+// Route for browsepage.html
+app.get('/browsepage', (req, res) => {
+  res.sendFile(path.join(__dirname, 'public/browsepage.html')); // Serves browsepage.html
 });
 
 
-app.post("/submit-feedback", async (req, res) => {
-  const { rating, comment } = req.body;
+// Courses Routes
+app.get('/courses', (req, res) => {
+  res.sendFile(path.join(__dirname, 'public/2.html'));
+});
 
-  if (!rating) {
-    return res.status(400).json({ message: "Rating is required." });
+app.post('/courses', (req, res) => {
+  const { courseid, coursename } = req.body;
+
+  // Validate input
+  if (!courseid || !coursename) {
+    return res.status(400).json({ message: 'Course ID and Course Name are required' });
   }
 
-  try {
-    const collection = db.collection("mohaiman"); 
-    const feedback = { rating, comment, submittedAt: new Date() };
+  const query = 'INSERT INTO courses (courseid, coursename) VALUES (?, ?)';
+  db.query(query, [courseid, coursename], (err, result) => {
+    if (err) {
+      console.error('Database error:', err.message);
+      return res.status(500).json({ message: 'Failed to add course. Please try again later.' });
+    }
+    res.send('Course added successfully!');
+  });
+});
 
-    
-    const result = await collection.insertOne(feedback);
-
-    res.status(200).json({ message: "Feedback submitted successfully!", id: result.insertedId });
-  } catch (error) {
-    console.error("Error saving feedback:", error);
-    res.status(500).json({ message: "Failed to submit feedback." });
-  }
+// Fields Routes
+app.get('/fields', (req, res) => {
+  const query = 'SELECT * FROM fields ORDER BY fieldid DESC';
+  db.query(query, (err, result) => {
+      if (err) {
+          console.error('Database error:', err.message);
+          return res.status(500).json({ message: 'Failed to retrieve fields. Please try again later.' });
+      }
+      res.json(result); // Send the data as JSON
+  });
 });
 
 
-app.listen(port, () => {
-  console.log(`Server is running on http://localhost:${port}`);
+// Server
+const PORT = process.env.PORT || 5000;
+app.listen(PORT, () => {
+  console.log(`Server running at http://localhost:${PORT}`);
 });

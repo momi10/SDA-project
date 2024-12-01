@@ -1,0 +1,110 @@
+/* General Body Styles */
+body {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    position: relative;
+}
+
+/* Blurred Background */
+body::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+        rgba(0, 0, 0, 0.5), 
+        rgba(0, 0, 0, 0.5)
+    ), url('121.jpg') no-repeat center center / cover;
+    filter: blur(8px); /* Apply blur effect here */
+    z-index: 0; /* Ensure it's behind the form container */
+}
+
+/* Form Container with Gradient and Hover Glow */
+.form-container {
+    position: relative;
+    z-index: 1; /* Ensure the form container is above the blurred background */
+    background: linear-gradient(145deg, #f7cac9, #92a8d1); /* Gradient Background */
+    padding: 40px 30px;
+    border-radius: 15px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    transition: transform 0.3s, box-shadow 0.3s;
+    text-align: center;
+    width: 400px;
+}
+
+/* Hover Effect */
+.form-container:hover {
+    transform: translateY(-10px); /* Lift on hover */
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4), 0 0 30px rgba(39, 131, 245, 0.6); /* Glow Effect */
+}
+
+/* Form Header */
+form h2 {
+    font-size: 24px;
+    color: #333;
+    margin-bottom: 20px;
+    text-transform: uppercase;
+    font-weight: bold;
+}
+
+/* Labels */
+label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: bold;
+    color: #555;
+    text-align: left;
+}
+
+/* Input Fields */
+input {
+    width: 100%;
+    padding: 12px;
+    margin-bottom: 20px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    box-sizing: border-box;
+    font-size: 14px;
+    transition: box-shadow 0.2s;
+}
+
+/* Input Focus Effect */
+input:focus {
+    outline: none;
+    box-shadow: 0 0 5px rgba(39, 131, 245, 0.8); /* Blue glow */
+    border-color: #2783f5;
+}
+
+/* Submit Button */
+button {
+    width: 100%;
+    padding: 14px;
+    background-color: #6a11cb; /* Gradient Start */
+    background-image: linear-gradient(to right, #6a11cb, #2575fc); /* Gradient Button */
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background 0.3s ease-in-out, transform 0.2s;
+}
+
+/* Button Hover Effect */
+button:hover {
+    background-image: linear-gradient(to right, #2575fc, #6a11cb); /* Reverse Gradient */
+    transform: scale(1.05); /* Slight Growth */
+}
+
+/* Button Active (Click) Effect */
+button:active {
+    transform: scale(0.98); /* Slight Shrink */
+}
