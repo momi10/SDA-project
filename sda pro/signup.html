@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login UI</title>
+  <link rel="stylesheet" href="signup.css">
+</head>
+<body>
+  <div class="login-container">
+    <div class="avatar">
+      <img src="avatar.png" alt="User Avatar">
+    </div>
+    <form action="/signup" method="post">
+      <div class="input-group">
+        <label for="userid">
+          <i class="fas fa-id-badge"></i>
+        </label>
+        <input type="number" id="userid"  name="userid"  placeholder="User ID" required max="99">
+      </div>
+      <div class="input-group">
+        <label for="username">
+          <i class="fas fa-user"></i>
+        </label>
+        <input type="text" id="username"   name="username" placeholder="Username" required>
+      </div>
+      <div class="input-group">
+        <label for="password">
+          <i class="fas fa-lock"></i>
+        </label>
+        <input type="password" id="password"  name="password" placeholder="Password" maxlength="5" required>
+      </div>
+      <button type="submit" class="login-button">SIGN UP</button>
+    </form>
+  </div>
+  <script src="signup.js"></script>
+</body>
+</html>

@@ -1,0 +1,87 @@
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  padding: 10px;
+  background-color: #f5f5f5;
+  border-bottom: 1px solid #ddd;
+}
+
+.header .btn {
+  margin-right: 10px;
+  padding: 8px 12px;
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.header .btn:hover {
+  background-color: #0056b3;
+}
+
+.header .website-name {
+  font-size: 1.5em;
+  font-weight: bold;
+  flex: 1;
+  text-align: center;
+  color: #333;
+}
+
+.main-content {
+  flex: 1;
+  text-align: center;
+  margin-top: 20px;
+}
+
+.main-content .main-image {
+  max-width: 100%;
+  height: auto;
+}
+
+footer.why-choose-us {
+  background-color: #f9f9f9;
+  padding: 30px 20px;
+  text-align: center;
+}
+
+footer.why-choose-us h2 {
+  margin-bottom: 20px;
+}
+
+.features {
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+}
+
+.feature {
+  max-width: 200px;
+  margin: 10px;
+  text-align: center;
+}
+
+.feature h3 {
+  font-size: 1.2em;
+  margin-bottom: 10px;
+}
+
+.feature p {
+  font-size: 0.9em;
+  color: #555;
+}
+
+.feature .icon {
+  width: 50px;
+  height: 50px;
+  margin-bottom: 10px;
+}

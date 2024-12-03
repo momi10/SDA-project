@@ -1,0 +1,102 @@
+body {
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background: linear-gradient(145deg, #f7cac9, #92a8d1);
+    font-family: Arial, sans-serif;
+    position: relative;
+}
+
+/* Blurred Background */
+body::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+        rgba(0, 0, 0, 0.5), 
+        rgba(0, 0, 0, 0.5)
+    ), url('121.jpg') no-repeat center center / cover;
+    filter: blur(8px);
+    z-index: 0;
+}
+
+/* Form Container with Gradient and Hover Glow */
+.form-container {
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 10px;
+    padding: 40px 30px;
+    width: 450px;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(10px);
+    text-align: center;
+    position: relative;
+    z-index: 1;
+}
+
+/* Hover Effect */
+.form-container:hover {
+    transform: translateY(-10px); /* Lift on hover */
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4), 0 0 30px rgba(39, 131, 245, 0.6); /* Glow Effect */
+}
+
+/* Form Header */
+form h2 {
+    font-size: 24px;
+    color: #333;
+    margin-bottom: 20px;
+    text-transform: uppercase;
+    font-weight: bold;
+}
+
+/* Labels */
+label {
+    color: #555;
+    text-align: left;
+}
+
+/* Input Fields */
+input {
+    background: transparent;
+    border: 1px solid #ddd;
+    outline: none;
+    padding: 10px 0;
+    color: #333;
+    width: 100%;
+    font-size: 16px;
+}
+
+/* Input Focus Effect */
+input:focus {
+    border-color: #2783f5;
+    box-shadow: 0 0 5px rgba(39, 131, 245, 0.8);
+    
+}
+
+/* Submit Button */
+button {
+    background-color: #6a11cb;
+    background-image: linear-gradient(to right, #6a11cb, #2575fc);
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 15px;
+    font-size: 16px;
+    cursor: pointer;
+    width: 100%;
+}
+
+/* Button Hover Effect */
+button:hover {
+    background-image: linear-gradient(to right, #2575fc, #6a11cb);
+}
+
+/* Button Active (Click) Effect */
+button:active {
+    transform: scale(0.98); /* Slight Shrink */
+}
