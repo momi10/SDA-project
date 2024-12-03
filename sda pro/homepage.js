@@ -1,5 +1,5 @@
 document.getElementById('edit-profile').addEventListener('click', () => {
-  window.location.href = '/gotoeditprofile';
+  window.location.href = '/gotoeditprofile';                     
   });
   
   document.getElementById('browse-fields').addEventListener('click', () => {
