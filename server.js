@@ -168,3 +168,45 @@ app.post('/update-password', (req, res) => {
 });
 
 
+
+
+
+
+
+
+
+app.get('/homepage', (req, res) => {                     //go to homepage both login and signup
+  res.sendFile(path.join(__dirname, 'homepage.html')); // Serve your homepage HTML
+});
+
+
+app.get('/gotologin', (req, res) => {
+  res.sendFile(path.join(__dirname, 'login.html'));      //go to login page from main
+});
+
+
+app.get('/gotosignup', (req, res) => {
+  res.sendFile(path.join(__dirname, 'signup.html'));      //go to signup page from main
+});
+
+app.get('/gotoeditprofile', (req, res) => {
+  res.sendFile(path.join(__dirname, 'editprofile.html'));      //go to editprofile page from main
+});
+
+app.get('/gotofavourite', (req, res) => {
+  res.sendFile(path.join(__dirname, 'favourite.html'));      //go to editprofile page from main
+});
+
+
+app.get('/gotofeedback', (req, res) => {                 //from homepage
+  res.sendFile(path.join(__dirname, 'feedback.html'));      //go to feedback page from main
+});
+
+app.get('/gotoinquiry', (req, res) => {                 //from homepage
+  res.sendFile(path.join(__dirname, 'inquiry.html'));      //go to inquiry page from main
+});
+
+
+
+
+
