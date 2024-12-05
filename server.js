@@ -31,57 +31,67 @@ db.connect((err) => {
   console.log('Connected to the database.');
 });
 
-// Routes
-
-// Home route for 2.html
-app.get('/', (req, res) => {
-  res.sendFile(path.join(__dirname, 'public/2.html')); // Serves 2.html as the main HTML file
+db.connect((err) => {
+  if (err) {
+    console.error('Error connecting to MySQL:', err.stack);
+    return;
+  }
+  console.log('Connected to MySQL as id ' + db.threadId);
 });
 
-// Route for browsepage.html
-app.get('/browsepage', (req, res) => {
-  res.sendFile(path.join(__dirname, 'public/browsepage.html')); // Serves browsepage.html
-});
-
-
-// Courses Routes
-app.get('/courses', (req, res) => {
-  res.sendFile(path.join(__dirname, 'public/2.html'));
-});
-
-app.post('/courses', (req, res) => {
-  const { courseid, coursename } = req.body;
-
-  // Validate input
-  if (!courseid || !coursename) {
-    return res.status(400).json({ message: 'Course ID and Course Name are required' });
+// User Class
+class User {
+  constructor(userid, username, password) {
+    this.userid = userid;
+    this.username = username;
+    this.password = password;
   }
 
-  const query = 'INSERT INTO courses (courseid, coursename) VALUES (?, ?)';
-  db.query(query, [courseid, coursename], (err, result) => {
-    if (err) {
-      console.error('Database error:', err.message);
-      return res.status(500).json({ message: 'Failed to add course. Please try again later.' });
-    }
-    res.send('Course added successfully!');
-  });
-});
+  // Method to save user to the MySQL database
+  save() {
+    return new Promise((resolve, reject) => {
+      const query = 'INSERT INTO userdetails (userid, username, userpassword) VALUES (?, ?, ?)';
+      db.query(query, [this.userid, this.username, this.password], (err, results) => {
+        if (err) {
+          reject('Error creating account: ' + err);
+        } else {
+          resolve('Account created successfully!');
+        }
+      });
+    });
+  }
 
-// Fields Routes
-app.get('/fields', (req, res) => {
-  const query = 'SELECT * FROM fields ORDER BY fieldid DESC';
-  db.query(query, (err, result) => {
-      if (err) {
-          console.error('Database error:', err.message);
-          return res.status(500).json({ message: 'Failed to retrieve fields. Please try again later.' });
-      }
-      res.json(result); // Send the data as JSON
-  });
-});
+  updateName(newname) {
+    return new Promise((resolve, reject) => {
+      const query = `UPDATE userdetails SET username = ? WHERE userid = ?`;  // Correct table name is 'userdetails'
+      db.query(query, [newname, this.userid], (err, result) => {
+        if (err) {
+          reject('Failed to update name.');
+        } else if (result.affectedRows === 0) {
+          reject('User ID not found.');
+        } else {
+          resolve('Name updated successfully.');
+        }
+      });
+    });
+  }
 
 
-// Server
-const PORT = process.env.PORT || 5000;
-app.listen(PORT, () => {
-  console.log(`Server running at http://localhost:${PORT}`);
-});
+  updatePassword(newpassword) {
+    return new Promise((resolve, reject) => {
+      const query = `UPDATE userdetails SET userpassword = ? WHERE userid = ?`;
+      db.query(query, [newpassword, this.userid], (err, result) => {
+        if (err) {
+          reject('Failed to update password.');
+        } else if (result.affectedRows === 0) {
+          reject('User ID not found.');
+        } else {
+          resolve('Password updated successfully.');
+        }
+      });
+    });
+  }
+
+
+
+}
