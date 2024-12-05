@@ -246,3 +246,32 @@ app.post("/submit-feedback", (req, res) => {
 });
 
 
+//handle inquiry
+app.post("/submit-inquiry", (req, res) => {
+  const { name, email, message } = req.body;
+
+  if (!name || !email || !message) {
+    return res.status(400).json({ message: "All fields are required." });
+  }
+
+  const query = "INSERT INTO inquiry (name, email, comment, submitted_at) VALUES (?, ?, ?, ?)";
+  const values = [name, email, message || null, new Date()];
+
+  db.query(query, values, (err, result) => {
+    if (err) {
+      console.error("Error saving inquiry:", err);
+      return res.status(500).json({ message: "Failed to submit inquiry." });
+    }
+
+    res.status(200).json({ message: "Inquiry submitted successfully!", id: result.insertId });
+  });
+});
+
+
+
+
+
+
+
+
+
