@@ -131,6 +131,40 @@ app.post('/login', (req, res) => {
   });
 });
 
+app.post('/update-name', (req, res) => {
+  const { userid, newname } = req.body;    // Extract data 
 
+  // Create a User 
+  const user = new User(userid);
+
+  // Call the updateName method to update the username
+  user
+    .updateName(newname)
+    .then(() => {
+      res.redirect('/homepage'); // Redirect to homepage 
+    })
+    .catch((err) => {
+      res.status(500).send(err); // Send error message 
+    });
+});
+
+
+// Route to handle updating the password (POST request)
+app.post('/update-password', (req, res) => {
+  const { userid, newpassword } = req.body; // Extract data from the request body
+
+  // Create a User instance
+  const user = new User(userid);
+
+  // Call the updatePassword method 
+  user
+    .updatePassword(newpassword)
+    .then(() => {
+      res.redirect('/homepage'); // Redirect to homepage 
+    })
+    .catch((err) => {
+      res.status(500).send(err); // Send error message 
+    });
+});
 
 
