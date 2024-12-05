@@ -11,7 +11,7 @@ document.getElementById('edit-profile').addEventListener('click', () => {
   });
   
   document.getElementById('provide-feedback').addEventListener('click', () => {
-    console.log('Provide Feedback button clicked');
+  window.location.href = '/gotofeedback';
   });
   
   document.getElementById('send-inquiry').addEventListener('click', () => {
