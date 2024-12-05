@@ -12,12 +12,16 @@ app.use(bodyParser.json());
 
 
 // MySQL connection
+app.use(express.static(path.join(__dirname)));
+
+
 const db = mysql.createConnection({
-  host: 'localhost',
-  user: 'root',
-  password: 'lahore789',
-  database: 'newdb', // Correct database name
+  host: 'localhost',  
+  user: 'root',       
+  password: 'eliya123', 
+  database: 'career', 
 });
+
 
 db.connect((err) => {
   if (err) {
