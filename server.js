@@ -92,6 +92,45 @@ class User {
     });
   }
 
-
-
 }
+
+// Route to sign-up 
+app.post('/signup', (req, res) => {
+  const { userid, username, password } = req.body; // Extract data 
+
+  // Create a new User instance
+  const newUser = new User(userid, username, password);
+
+  // Call the save method to insert the user data into MySQL
+  newUser
+    .save()
+    .then(() => {
+      res.redirect('/homepage'); // Redirect to homepage 
+    })
+    .catch((err) => {
+      res.status(500).send(err); // Send error message 
+    });
+});
+
+
+// Route to  login 
+app.post('/login', (req, res) => {
+  const { userid, username, password } = req.body; // Extract data 
+
+  // Query to check if user exists 
+  const query = 'SELECT * FROM userdetails WHERE userid = ? AND username = ? AND userpassword = ?';
+  db.query(query, [userid, username, password], (err, results) => {
+    if (err) {
+      console.error('Error querying database:', err);
+      res.status(500).send('Internal Server Error');
+    } else if (results.length > 0) {
+      res.redirect('/homepage');
+    } else {
+      res.status(401).send('Invalid User ID, Username, or Password');
+    }
+  });
+});
+
+
+
+
