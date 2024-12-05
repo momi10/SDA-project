@@ -19,6 +19,6 @@ document.getElementById('edit-profile').addEventListener('click', () => {
   });
   
   document.getElementById('logout').addEventListener('click', () => {
-    console.log('Log Out button clicked');
+    window.location.href = '/gotologout';
   });
   
