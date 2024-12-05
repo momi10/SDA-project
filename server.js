@@ -269,6 +269,25 @@ app.post("/submit-inquiry", (req, res) => {
 
 
 
+// Serve the 1st page of project
+app.get('/', (req, res) => {
+  res.sendFile(path.join(__dirname, 'main.html'));      //main page test
+});
+
+
+app.get('/gotologout', (req, res) => {
+  res.sendFile(path.join(__dirname, 'main.html'));      //go to main page from logout
+});
+
+
+
+// Start the server
+app.listen(PORT, () => {
+  console.log(`Server running on http://localhost:${PORT}`);
+});
+
+
+
 
 
 
