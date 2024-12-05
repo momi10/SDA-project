@@ -7,7 +7,7 @@ document.getElementById('edit-profile').addEventListener('click', () => {
   });
   
   document.getElementById('add-favorite').addEventListener('click', () => {
-    console.log('Add Favourite Course button clicked');
+    window.location.href = '/gotofavourite';
   });
   
   document.getElementById('provide-feedback').addEventListener('click', () => {
