@@ -168,7 +168,24 @@ app.post('/update-password', (req, res) => {
 });
 
 
+//add FAVOURITE COURSE
+ app.post('/courses', (req, res) => {
+  const { courseid, coursename } = req.body;
 
+  // Validate input
+  if (!courseid || !coursename) {
+    return res.status(400).json({ message: 'Course ID and Course Name are required' });
+  }
+
+  const query = 'INSERT INTO courses (courseid, coursename) VALUES (?, ?)';
+  db.query(query, [courseid, coursename], (err, result) => {
+    if (err) {
+      console.error('Database error:', err.message);
+      return res.status(500).json({ message: 'Failed to add course. Please try again later.' });
+    }
+    res.send('Course added successfully!');
+  });
+});
 
 
 
