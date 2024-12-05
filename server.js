@@ -224,6 +224,25 @@ app.get('/gotoinquiry', (req, res) => {                 //from homepage
 });
 
 
+// Handle Feedback Submission
+app.post("/submit-feedback", (req, res) => {
+  const { rating, comment } = req.body;
 
+  if (!rating) {
+    return res.status(400).json({ message: "Rating is required." });
+  }
+
+  const query = "INSERT INTO feedback (rating, comment, submitted_at) VALUES (?, ?, ?)";
+  const values = [rating, comment || null, new Date()];
+
+  db.query(query, values, (err, result) => {
+    if (err) {
+      console.error("Error saving feedback:", err);
+      return res.status(500).json({ message: "Failed to submit feedback." });
+    }
+
+    res.status(200).json({ message: "Feedback submitted successfully!", id: result.insertId });
+  });
+});
 
 
