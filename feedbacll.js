@@ -5,3 +5,11 @@ document.addEventListener("DOMContentLoaded", function () {
   const submitButton = document.getElementById("submit-button");
   const feedbackText = document.getElementById("feedback");
   let selectedRating = 0;
+  
+ // Handle star click for rating
+  stars.forEach((star) => {
+    star.addEventListener("click", function () {
+      selectedRating = parseInt(this.getAttribute("data-value"));
+      updateStarSelection(selectedRating);
+    });
+  });
