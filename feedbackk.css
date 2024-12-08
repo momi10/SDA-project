@@ -44,5 +44,21 @@ body {
   border: none;
   border-radius: 5px;
   cursor: pointer;
+} 
+
+.comment-label {
+  display: block;
+  margin-bottom: 10px;
 }
+
+textarea {
+  width: 90%;
+  height: 80px;
+  margin-bottom: 15px;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  resize: none;
+}
+
 
