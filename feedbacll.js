@@ -13,3 +13,10 @@ document.addEventListener("DOMContentLoaded", function () {
       updateStarSelection(selectedRating);
     });
   });
+
+   // Reset button functionality
+  resetButton.addEventListener("click", function () {
+    selectedRating = 0;
+    updateStarSelection(selectedRating);
+    feedbackText.value = ""; // Clear feedback text
+  });
