@@ -20,3 +20,11 @@ document.addEventListener("DOMContentLoaded", function () {
     updateStarSelection(selectedRating);
     feedbackText.value = ""; // Clear feedback text
   });
+
+  
+  // Submit button functionality
+  submitButton.addEventListener("click", function () {
+    if (selectedRating === 0) {
+      alert("Please provide a rating before submitting.");
+      return;
+    }
