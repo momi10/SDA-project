@@ -8,3 +8,9 @@ body {
   height: 100vh;
   background-color: #f4f4f4;
 }
+
+.image-section img {
+  max-width: 100%;
+  height: auto;
+  margin-bottom: 20px;
+}
