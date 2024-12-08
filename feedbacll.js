@@ -27,4 +27,10 @@ document.addEventListener("DOMContentLoaded", function () {
     if (selectedRating === 0) {
       alert("Please provide a rating before submitting.");
       return;
-    }
+    } 
+    
+      const feedback = feedbackText.value.trim();
+    console.log("Feedback submitted:", {
+      rating: selectedRating,
+      feedback: feedback || "No additional comments.",
+    });
