@@ -67,3 +67,43 @@
             </a>
         </div>
     </div>
+         <!-- JavaScript for form submission -->
+    <script>
+        // Add an event listener to the form's submit event
+        document.getElementById("inquiry-form").addEventListener("submit", async function (event) {
+            // Prevent the default form submission behavior
+            event.preventDefault();
+
+            // Collect form data
+            const name = document.getElementById("name").value;
+            const email = document.getElementById("email").value;
+            const message = document.getElementById("message").value;
+
+            try {
+                // Send form data to the server using a POST request
+                const response = await fetch("http://localhost:3000/submit-inquiry", {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify({ name, email, message }),
+                });
+
+                // Parse and handle the server's response
+                const result = await response.json();
+                if (response.ok) {
+                    // Display a success message to the user
+                    alert(result.message); 
+                    // Reset the form fields
+                    document.getElementById("inquiry-form").reset(); 
+                } else {
+                    // Display an error message if the request fails
+                    alert(result.message || "Failed to send the inquiry.");
+                }
+            } catch (error) {
+                // Handle errors during the fetch request
+                console.error("Error submitting inquiry:", error);
+                alert("Error submitting the inquiry.");
+            }
+        });
+    </script>
+</body>
+</html>
