@@ -34,3 +34,16 @@ document.addEventListener("DOMContentLoaded", function () {
       rating: selectedRating,
       feedback: feedback || "No additional comments.",
     });
+
+                                  alert("Thank you for your feedback!");
+    resetButton.click(); // Reset form after submission
+  });
+
+  // Helper function to update star selection
+  function updateStarSelection(rating) {
+    stars.forEach((star) => {
+      const value = parseInt(star.getAttribute("data-value"));
+      star.classList.toggle("selected", value <= rating);
+    });
+  }
+});
