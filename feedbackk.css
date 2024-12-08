@@ -14,3 +14,14 @@ body {
   height: auto;
   margin-bottom: 20px;
 }
+.form-section {
+  text-align: center;
+  width: 100%;
+}
+
+.rating {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 15px;
+}
